@@ -1,4 +1,6 @@
-symfony-admin
+Symfony Frontend App
 =============
 
-A Symfony project created on September 28, 2016, 9:50 pm.
+CREATE DATABASE frontend;
+GRANT ALL PRIVILEGES ON frontend.* TO frontend@localhost IDENTIFIED BY 'password';
+FLUSH PRIVILEGES;
