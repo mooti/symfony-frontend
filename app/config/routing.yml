@@ -1,3 +1,8 @@
+mooti_user:
+    resource: "@MootiUserBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
