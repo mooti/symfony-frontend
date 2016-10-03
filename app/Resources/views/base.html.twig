@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+        <link rel="stylesheet" href="{{ asset('assets/css/custom.min.css') }}">
     </head>
-    <body>
+    <body class="login">
         {% block content %}{% endblock %}
+        <!-- jQuery -->
+        <script src="{{ asset('assets/vendors/jquery/dist/jquery.min.js') }}"></script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

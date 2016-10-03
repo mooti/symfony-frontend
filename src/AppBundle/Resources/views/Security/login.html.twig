@@ -1,57 +1,103 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{{ asset('assets/vendors/bootstrap/dist/css/bootstrap.min.css') }}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ asset('assets/vendors/font-awesome/css/font-awesome.min.css') }}">
+    <!-- NProgress -->
+    <link rel="stylesheet" href="{{ asset('assets/vendors/nprogress/nprogress.css') }}">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="{{ asset('assets/vendors/animate.css/animate.min.css') }}">
+{% endblock %}
+
 {% block content %}
 
-   <div class="container">
+   <div>
+    {% if error %}
+        {{ error.messageKey|trans(error.messageData, 'security') }}
+    {% endif %}
+      <a class="hiddenanchor" id="lostpassword"></a>
+      <a class="hiddenanchor" id="signin"></a>
 
-        <div class="row">
+      <div class="login_wrapper">
+        <div class="animate form login_form">
+          <section class="login_content">
+            <form action="{{ path('login_check') }}" method="post" >
+              <h1>Login Form</h1>
+              <div>
+                <input type="text" name="_username" id="username" class="form-control" placeholder="Username" required="" />
+              </div>
+              <div>
+                <input type="password" name="_password" id="password" class="form-control" placeholder="Password" required="" />
+              </div>
+              <div>
+                <a class="btn btn-default submit" href="#">Log in</a>
+                <a class="reset_pass" href="#lostpassword">Lost your password?</a>
+              </div>
 
-            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-sm-offset-3 col-lg-6 col-lg-offset-3">
+              <div class="clearfix"></div>
 
-                <div class="card">
-                    
-                    <div class="card-block">
+              <div class="separator">
+                <p class="change_link">Created by
+                  <a href="#" class="to_register"> Mooti </a>
+                </p>
 
-                        <h3 class="card-title">Welcome to the The admin!</h3>
+                <div class="clearfix"></div>
+                <br />
 
-                        <form action="{{ path('login_check') }}" method="post">
-
-                            <legend class="text-muted">Please log in</legend>
-
-                            {% if error %}
-
-                                <div class="alert alert-danger" role="alert">
-                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                                    <span class="sr-only">Error:</span>
-                                    {{ error.messageKey|trans(error.messageData, 'security') }}
-                                </div>
-
-                            {% endif %}
-
-                            <fieldset class="form-group">
-
-                                <label for="inputEmail" class="sr-only">Username</label>
-                                <input type="username" name="_username" id="username" class="form-control" placeholder="Username" required autofocus value="{{ last_username }}" />
-
-                            </fieldset>
-
-                            <fieldset class="form-group">
-
-                                <label for="inputPassword" class="sr-only">Password</label>
-                                <input type="password" name="_password" id="password" class="form-control" placeholder="Password" required />
-
-                            </fieldset>
-
-                            <button id="login-button" class="btn btn-lg btn-primary" type="submit"><i class="fa fa-sign-in"></i> Login</button>
-
-                        </form>
-                    </div>
+                <div>
+                  <h1>Admin</h1>
+                  <p>©2016 All Rights Reserved.</p>
                 </div>
+              </div>
+            </form>
+          </section>
+        </div>
 
-            </div>
+        <div id="register" class="animate form registration_form">
+          <section class="login_content">
+            <form>
+              <h1>Lost Password</h1>
+              
+              <div>
+                <input type="email" class="form-control" placeholder="Email" required="" />
+              </div>
+              
+              <div>
+                <a class="btn btn-default submit" href="#">Submit</a>
+              </div>
 
-       </div>
+              <div class="clearfix"></div>
 
+              <div class="separator">
+                <p class="change_link">Already have a username and password ?
+                  <a href="#signin" class="to_register"> Log in </a>
+                </p>
+
+                <div class="clearfix"></div>
+                <br />
+
+                <div>
+                  <h1> Admin </h1>
+                  <p>©2016 All Rights Reserved.</p>
+                </div>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
     </div>
 
+{% endblock %}
+
+{% block javascripts %}
+<script>
+    $('form .submit').on({
+        click: function (event) {
+            event.preventDefault();
+            $(this).closest('form').submit();
+        }
+    });
+</script>
 {% endblock %}
