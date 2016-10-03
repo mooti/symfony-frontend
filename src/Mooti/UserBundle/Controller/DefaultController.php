@@ -10,8 +10,8 @@ class DefaultController extends Controller
     /**
      * @Route("/")
      */
-    public function indexAction()
+    public function userListAction()
     {
-        return $this->render('MootiUserBundle:Default:index.html.twig');
+        return $this->render('MootiUserBundle:Default:userList.html.twig');
     }
 }
